@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    <a href="{% url 'task_create' %}">Create New Task</a>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a> -
+            {{ task.due_date }} -
+            {{ task.priority }} -
+            {% if task.completed %}Completed{% else %}Not Completed{% endif %}
+            <a href="{% url 'task_edit' task.id %}">Edit</a>
+            <a href="{% url 'task_delete' task.id %}">Delete</a>
+            <a href="{% url 'task_status' task.id %}">Change Status</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
